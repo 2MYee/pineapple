@@ -8,11 +8,8 @@ var router = express.Router();
 
 connection.connect();
 
-var outer = function (v) {
-
-    return v;
-}
-
+/*  Get user id from user_info table cause connecting user_subinfo's id
+*/
 var getId = function (name, callback) {
     var query = 'SELECT id FROM user_info WHERE name=\'' + name + '\';';
     connection.query(query, function (err, row) {
@@ -22,12 +19,17 @@ var getId = function (name, callback) {
     });
 }
 
-var inputUser = function (name, pw, nickname) {
-    var query = 'INSERT INTO user_info (name, password) VALUES (\'' + name + '\',\'' + pw + '\');';
+/*  insert user information in user_info and user_subinfo
+    insert user_info -> get user id -> insert user_subinfo
+*/
+var inputUser = function (name, pw,salt, nickname) {
+    var query = 'INSERT INTO user_info (name, password, salt) VALUES (\'' + name + '\',\'' + pw +'\',\'' + salt + '\');';
+    console.log(query);
     connection.query(query, function (err) {
         if (err) throw err;
     });
     getId(name, function (err, id) {
+        if (err) throw err;
         var query = 'INSERT INTO user_subinfo (id, nickname, icon) VALUES (' + id + ',\'' + nickname + '\',\'null\');';
         connection.query(query, function(err){
             if(err) throw err;
@@ -35,13 +37,21 @@ var inputUser = function (name, pw, nickname) {
     });
 }
 
+
+//  get user's signup information by POST method and encrypting password and insert into database
 router.post('/', function (req, res) {
     var name = req.body.name;
-    var pw = req.body.password;
-    var nick = req.body.nickname;
-    inputUser(name,pw,nick);
+    var nickname = req.body.nickname;
+    var salt = crypto.randomBytes(32);
+    crypto.pbkdf2(req.body.password, salt.toString('base64'), 143752, 32, 'sha512', function(err, key){
+        if(err) throw err;
+        inputUser(name,key.toString('base64'), salt.toString('base64'),nickname);
+        console.log(salt.toString('base64'));
+        console.log(key.toString('base64'));
+    })
 
-    res.send('<h1>' + name + ', ' + pw + ', ' + nick + '</h1>');
+
+    res.send('<h1>' + name + ', ' + nickname + '</h1>');
 });
 
 module.exports = router;
