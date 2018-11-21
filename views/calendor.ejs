@@ -1,0 +1,102 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/calendor_style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/js/calendor_js.js"></script>
+</head>
+
+<body>
+    <!-- 표만드는걸 table로 해야하나 div로 다 쪼개야하나...
+    div로 쪼개야 애니매이션 넣기가 좋을듯??? 
+    캘린더 애니메이션: 칸 누르면 모세의기적 (마진 조정으로??)
+    애니메이션 후
+      같은열: 정보 표시만 변경
+      다른열: 다시 열림
+    -->
+    <div id="headWrapper">
+        <div id='scrollWrapper'>
+            <div id='leftArrow'></div>
+            <ul>
+                <li id='1' class='month'></li>
+                <li id='2' class='month'></li>
+                <li id='3' class='month'></li>
+                <li id='4' class='month'></li>
+                <li id='5' class='month'></li>
+                <li id='6' class='month'></li>
+                <li id='7' class='month'></li>
+                <li id='8' class='month'></li>
+                <li id='9' class='month'></li>
+                <li id='10' class='month'></li>
+                <li id='11' class='month'></li>
+                <li id='12' class='month'></li>
+            </ul>
+            <div id='rightArrow'></div>
+        </div>
+        <div id="calWrapper">
+            <div id='cover'></div>
+            <div id="line1" class="calLine">
+                <div id="box1" class="cal">1</div>
+                <div id="box2" class="cal">2</div>
+                <div id="box3" class="cal">3</div>
+                <div id="box4" class="cal">4</div>
+                <div id="box5" class="cal">5</div>
+                <div id="box6" class="cal">6</div>
+                <div id="box7" class="cal">7</div></br>
+            </div>
+            <div id="line2" class="calLine">
+                <div id="box8" class="cal"></div>
+                <div id="box9" class="cal"></div>
+                <div id="box10" class="cal"></div>
+                <div id="box11" class="cal"></div>
+                <div id="box12" class="cal"></div>
+                <div id="box13" class="cal"></div>
+                <div id="box14" class="cal"></div></br>
+            </div>
+            <div id="line3" class="calLine">
+                <div id="box15" class="cal"></div>
+                <div id="box16" class="cal"></div>
+                <div id="box17" class="cal"></div>
+                <div id="box18" class="cal"></div>
+                <div id="box19" class="cal"></div>
+                <div id="box20" class="cal"></div>
+                <div id="box21" class="cal"></div></br>
+            </div>
+            <div id="line4" class="calLine">
+                <div id="box22" class="cal"></div>
+                <div id="box23" class="cal"></div>
+                <div id="box24" class="cal"></div>
+                <div id="box25" class="cal"></div>
+                <div id="box26" class="cal"></div>
+                <div id="box27" class="cal"></div>
+                <div id="box28" class="cal"></div></br>
+            </div>
+            <div id="line5" class="calLine">
+                <div id="box29" class="cal"></div>
+                <div id="box30" class="cal"></div>
+                <div id="box31" class="cal"></div>
+                <div id="box32" class="cal"></div>
+                <div id="box33" class="cal"></div>
+                <div id="box34" class="cal"></div>
+                <div id="box35" class="cal"></div></br>
+            </div>
+            <div id="line6" class="calLine">
+                <div id="box36" class="cal"></div>
+                <div id="box37" class="cal"></div>
+                <div id="box38" class="cal"></div>
+                <div id="box39" class="cal"></div>
+                <div id="box40" class="cal"></div>
+                <div id="box41" class="cal"></div>
+                <div id="box42" class="cal"></div></br>
+            </div>
+            <div id='memoBox'>
+                <input type='text' id='title' class='textBox'>
+                <textarea id='explain' class='textBox' placeholder='메모...'></textarea>
+                <button type='button' id='save'> 저장 </button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

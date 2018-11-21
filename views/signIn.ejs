@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/signIn_style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+        });
+    </script>
+</head>
+
+<body>
+    <div id="headWrapper">
+
+        <div id="logInBox">
+            <div id="upperForm">
+                시작하기
+            </div>
+            <div>
+                <form name="logIn" , method="post" action="/signIn">
+                    <input type="text" name="name" id="idInput" class="textBox" placeholder="ID"></br>
+                    <input type="password" name="password" id="passwordInput" class="textBox" placeholder="●●●●●●●●●●"></br>
+                    <input type="submit" id="logInButton"><span>Sign In </span>
+                </form>
+            </div>
+            <div id="underForm">
+                아직 회원이 아니신가요? <a href="/signUp">회원가입하기</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

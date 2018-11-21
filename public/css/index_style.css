@@ -1,0 +1,38 @@
+#headWrapper {
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+}
+.calLine {
+    display: flex;
+}
+#logo {
+    /* margin: 30px; */
+    position: absolute;
+
+    height:50px;
+    width:50px;
+    opacity: 0;
+}
+
+#logo:hover {
+    color: red;
+}
+
+#logoAdditional {
+    /* position: absolute; */
+    /* display: flex; */
+    padding-top:50px;
+    width:220px;
+    opacity: 0;
+    font-size:20px;
+}
+
+#calendor {
+    border: 1px solid black;
+}
+.cal{
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+}

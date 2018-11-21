@@ -1,23 +1,36 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <form action="/signup" method="post">
-      <input type="text" name="name" value="name">
-      <input type="text" name="password" value="password">
-      <input type="text" name="nickname" value="nickname">
-      <input type="submit" value="signup">
-    </form>
-    <br><br>
-    <form action="/login" method="post">
-      <input type="text" name="name" value="name">
-      <input type="text" name="password" value="password">
-      <input type="submit" value="login">
-    </form>
-  </body>
+
+<head>
+    <link rel="stylesheet" href="/css/index_style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#logo").animate({
+                left: "250px", // 페이지 x y를 따와서 이용 가능할듯.
+                opacity: '1',
+            }, 1500, function () {
+                $("#logoAdditional").animate({ opacity: '1', }, 1500);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    
+    <div id="headWrapper">
+        <div id="logo">
+            <img src="/img/pineappleLogo.png" width=220px height=100px>
+        </div>
+        <div id="logoAdditional">
+            다채롭게 꾸미는 캘린더
+        </div>
+    </div>
+    <ul>
+        <li id="signIn">
+            <a href="/signIn">Sign In</a>
+        </li>
+    </ul>
+
+</body>
+
 </html>

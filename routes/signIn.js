@@ -61,13 +61,17 @@ router.post('/', function (req, res) {
     isUserCorrect(name, req.body.password).then((result) => {
         if(result){
             console.log('login success');
-            res.render('main');
+            res.render('calendor');
         }else{
             console.log('login fail');
             res.render('fail');
         }
     })
 });
+
+router.get('/', (req, res) => {
+    res.render('signIn');
+})
 
 
 module.exports = router;

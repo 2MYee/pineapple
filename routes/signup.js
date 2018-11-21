@@ -56,6 +56,10 @@ router.post('/', function (req, res) {
     res.send('<h1>' + name + ', ' + nickname + '</h1>');
 });
 
+router.get('/', (req,res) => {
+    res.render('signUp');
+})
+
 module.exports = router;
 
 

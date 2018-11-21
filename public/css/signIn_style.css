@@ -1,0 +1,91 @@
+#headWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+}
+
+#logInBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 4px 4px 0 grey, 0 6px 20px 0 grey;
+    background-color: #eeecec;
+    padding: 20px;
+}
+
+.textBox {
+    border-radius: 5px;
+    border: 1px solid #c4c2c2;
+    margin: 10px;
+}
+
+#logInButton {
+    border-radius: 4px;
+    border: none;
+    text-align: center;
+    float: right;
+    margin-bottom: 20px;
+    width: 80px;
+    height: 30px;
+}
+
+#logInButton span {
+    cursor: pointer;
+    position: relative;
+    transition: 0.5s;
+}
+
+#logInButton span:after {
+    content: "\00bb";
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+#logInButton:hover span {
+    padding-right: 15px;
+}
+
+#logInButton:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+#upperForm {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+#signUpBox {
+    display: flex;
+    align-items: left;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 4px 4px 0 grey, 0 6px 20px 0 grey;
+    background-color: #eeecec;
+    width: 70%;
+    max-width: 550px;
+    padding: 20px;
+}
+
+#pwAlert {
+    font-size: 13px;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+#pwConfirmAlert{
+    font-size: 13px;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.icon {
+    opacity: 0;
+}
