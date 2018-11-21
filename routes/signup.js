@@ -14,7 +14,6 @@ var getId = function (name, callback) {
     var query = 'SELECT id FROM user_info WHERE name=\'' + name + '\';';
     connection.query(query, function (err, row) {
         if (err) throw err;
-
         callback(null, row[0].id);
     });
 }
@@ -22,7 +21,7 @@ var getId = function (name, callback) {
 /*  insert user information in user_info and user_subinfo
     insert user_info -> get user id -> insert user_subinfo
 */
-var inputUser = function (name, pw,salt, nickname) {
+var inputUser = function (name, pw, salt, nickname) {
     var query = 'INSERT INTO user_info (name, password, salt) VALUES (\'' + name + '\',\'' + pw +'\',\'' + salt + '\');';
     console.log(query);
     connection.query(query, function (err) {
@@ -37,6 +36,9 @@ var inputUser = function (name, pw,salt, nickname) {
     });
 }
 
+var existCheck = function(name){
+    
+}
 
 //  get user's signup information by POST method and encrypting password and insert into database
 router.post('/', function (req, res) {
