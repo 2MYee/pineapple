@@ -1,5 +1,7 @@
 #headWrapper {
     display: flex;
+    flex-direction: column;
+
     /* position: relative;
     z-index: 4;
     align-items: center;
@@ -7,6 +9,13 @@
     overflow: auto;
     height: 100%;
     width: 100%; */
+}
+
+#calWrapper {
+    display: flex;
+    flex-direction: column;
+    /* position: relative; */
+    top: 100px;
 }
 
 .calLine {
@@ -46,4 +55,26 @@
     width: 270px;
     height: 100px;
     overflow: auto;
+}
+#scrollWrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* border: solid 2px; */
+    height: 90px;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    margin: 0;
+    padding: 0;
+}
+
+.month {
+    width: 35px;
+    height: 35px;
+    font-size: 25px;
+    padding: 5px;
 }
