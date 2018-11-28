@@ -61,7 +61,8 @@ router.post('/', function (req, res) {
     isUserCorrect(name, req.body.password).then((result) => {
         if(result){
             console.log('login success');
-            res.render('calendor');
+            req.session.user_name = name;
+            res.render('calendor', {user_name : req.session.user_name});
         }else{
             console.log('login fail');
             res.render('fail');
