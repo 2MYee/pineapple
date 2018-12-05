@@ -1,38 +1,35 @@
-#headWrapper {
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
+@font-face {
+    font-family: NanumSquareWeb; 
+    src: local(NanumSquareR),
+         local(NanumSquare),
+         url(NanumSquareR.eot) format('embedded-opentype'),
+         url(NanumSquareR.woff) format('woff'),
+         url(NanumSquareR.ttf) format('truetype');
 }
-.calLine {
-    display: flex;
+
+#headwrapper {
+    background: url(/img/calendar_blur.png);
+     /* no-repeat center center fixed  */
+    background-size: cover;
+    height: 100%;
+    width: 100%;
 }
+
 #logo {
     /* margin: 30px; */
-    position: absolute;
-
+    position: relative;
     height:50px;
     width:50px;
     opacity: 0;
 }
 
-#logo:hover {
-    color: red;
-}
-
 #logoAdditional {
-    /* position: absolute; */
-    /* display: flex; */
-    padding-top:50px;
-    width:220px;
+    position: relative;
     opacity: 0;
-    font-size:20px;
+    font-weight: bold;
+    font-size: 25px;
 }
 
-#calendor {
-    border: 1px solid black;
-}
-.cal{
-    width: 100px;
-    height: 100px;
-    border: 2px solid black;
+#bodyWrapper {
+    margin-top: 30px;
 }

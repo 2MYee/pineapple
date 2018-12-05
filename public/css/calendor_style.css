@@ -1,6 +1,10 @@
 #headWrapper {
     display: flex;
-    flex-direction: column;
+    position: absolute;
+    flex-flow: column wrap;
+    align-content: flex-start;
+    height: 100%;
+    width: 100%;
 
     /* position: relative;
     z-index: 4;
@@ -9,14 +13,23 @@
     overflow: auto;
     height: 100%;
     width: 100%; */
+    
+}
+
+#leftSide{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 100%;
 }
 
 #calWrapper {
-    display: flex;
+    /* display: flex; */
+    flex: 1;
     flex-direction: column;
     /* position: relative; */
     top: 100px;
-}
+} 
 
 .calLine {
     display: flex;
@@ -30,17 +43,17 @@
     border: 2px solid black;
 }
 #cover {
-    display: none;
-    position: absolute;
-    z-index: 1;
-    /* overflow: auto; */
-    height: 100%;
-    width: 100%;
+    position:absolute;  
+    left:0;
+    top:0;
+    z-index: 10;  
+    background-color:#000;  
+    display: none;  
 }
 #memoBox {
     display: none;
     position: absolute;
-    z-index: 3;
+    z-index: 20;
     border: none;
     background-color: white;
     width: 396px;
@@ -48,9 +61,15 @@
 }
 
 .textBox {
-    margin: 20px;
+    margin: 5px;
+    margin-left: 20px;
 }
-
+#title {
+    width: 270px;
+}
+#date {
+    width: 270px;
+}
 #explain {
     width: 270px;
     height: 100px;
@@ -58,15 +77,16 @@
 }
 #scrollWrapper {
     display: flex;
-    justify-content: flex-start;
+    /* flex-direction: row; */
     align-items: center;
+    justify-content: space-around;
+    
     /* border: solid 2px; */
     height: 90px;
 }
-
 ul {
     display: flex;
-    justify-content: center;
+    align-items: center;
     /* align-items: center; */
     margin: 0;
     padding: 0;
@@ -76,5 +96,18 @@ ul {
     width: 35px;
     height: 35px;
     font-size: 25px;
+    text-align: center;
+    line-height: 35px;
     padding: 5px;
+}
+
+#rightSide {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border: solid 2px;
+    width: 30%;
+    height: 100%;
+    margin-left: 50px;
+    margin-bottom: 50px;
 }

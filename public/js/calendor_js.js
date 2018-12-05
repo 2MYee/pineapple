@@ -1,80 +1,105 @@
-var arr = new Array(42);
-// var arr = [];
-var mon = new Array(12);
+var arr = new Array(42); // 여기에 달에 대한 정보 받음
 var today = new Date();
-mon.fill('aaa');
-mon[10] = '0,0,0,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,0,0,0,0,0,0,0,0';
-mon[11] = '0,0,0,0,0,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,0,0,0,0,0';
+var date = new Date();
+var prevMonth;
 
 $(document).ready(function () {
     arr.fill('');
-    var mm = today.getMonth(); // Jan is 0
-    setUpDate(mon[mm]); // 서버에서 현 날짜 저장.
 
+    buildCalendar();
     $('.cal').off().on('click', function () {
         changeColorOn(this);
     });
-
+    
     $('.month').off().on('click', function () {
-        console.log(this.id);
-        if (this.id == '11') {
-            setUpDate(mon[10]);
-            mm = 10;
-        }
-        else if (this.id == '12') {
-            setUpDate(mon[11]);
-            mm = 11;
-        }
-        else if (this.id == 'leftArrow') {
-            mm -= 1;
-            if (mm < 0)
-                mm = 11;
-            setUpDate(mon[mm]);
+        if (this.id == 'leftArrow') {
+            prevCalendar(1);
         }
         else if (this.id == 'rightArrow') {
-            mm += 1;
-            if (mm > 11)
-                mm = 1;
-            setUpDate(mon[mm]);
+            nextCalendar(1);
         }
-    });
-});
-
-function setUpDate(mon) {
-    var i;
-    var tar;
-    var tmp = new Array();
-    for (i = 1; i <= 42; i++) {
-        tar = '#box' + i;
-        $(tar).html('');
-    }
-
-    tmp = mon.split(',');
-    for (i = 1; i <= 42; i++) {
-        tar = '#box' + i;
-        if (tmp[i - 1] != 0) {
-            if (i % 7 == 0) {
-                $(tar).html(tmp[i - 1]).css('color', 'blue');
-            } else if (i % 7 == 1) {
-                $(tar).html(tmp[i - 1]).css('color', 'red');
-            } else {
-                $(tar).html(tmp[i - 1]);
+        else {
+            console.log(this.id - prevMonth);
+            if (this.id - prevMonth < 0) {
+                prevCalendar(prevMonth - this.id);
+            }
+            else if (this.id - prevMonth > 0) {
+                nextCalendar(this.id - prevMonth);
             }
         }
+    });
+    
+});
+
+function prevCalendar(gap) { //이전 달
+    today = new Date(today.getFullYear(), today.getMonth() - gap, today.getDate());
+    buildCalendar();
+}
+
+function nextCalendar(gap) { //다음 달
+    today = new Date(today.getFullYear(), today.getMonth() + gap, today.getDate());
+    buildCalendar();
+}
+
+function buildCalendar() { //현재 달 달력 만들기
+    var doMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    var lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+    var count = 0;
+    var temp = '#' + prevMonth;
+
+    dateCheck(doMonth);
+    $(temp).css('font-size', '25px');
+    prevMonth = today.getMonth() + 1;
+    temp = '#' + prevMonth;
+    $(temp).css('font-size', '35px');
+    console.log(prevMonth);
+
+    for (i = 1; i <= 42; i++) { // 숫자비움
+        tar = '#box' + (i + count);
+        $(tar).html('');
     }
-    // var i = tar.id.slice(3);
+    for (i = 0; i < doMonth.getDay(); i++) { // 1일 시작하는 칸 맞추기
+        count += 1;
+    }
+    for (i = 1; i <= lastDate.getDate(); i++) { // 숫자채움
+        tar = '#box' + (i + count);
+        $(tar).html(i);
+    }
+    for (i = 1; i <= 42; i++) { // 색칠
+        tar = '#box' + i;
+        if (i % 7 == 0) {
+            $(tar).css('color', 'blue');
+        }
+        else if (i % 7 == 1) {
+            $(tar).css('color', 'red');
+        }
+    }
+
 }
 
-function changeColorOff(tar) {
-    $(tar).css('background', 'white');
-    $('#cover').css('background', 'white').css('display', 'none').css('opacity', 1);
-    $('#memoBox').css('display', 'none').css('z-index', '3');
-
+function dateCheck(doMonth) {
+    $('#chatBox').html(doMonth);
 }
+
+// function changeColorOff(tar) { // 삭제준비
+//     $('.window .close').click(function (e) {  
+//         //링크 기본동작은 작동하지 않도록 한다.
+//         e.preventDefault();  
+//         $('#mask, .window').hide();  
+//     });   
+//     $('#memoBox').css('display', 'none').css('z-index', '3');
+
+// }
 
 function changeColorOn(tar) {
+    var coverHeight = $(document).height();
+    var coverWidth = $(document).width();
+
+    console.log(coverHeight);
+    $('#cover').css({ 'width': coverWidth, 'height': coverHeight });
+    $('#cover').fadeTo("slow", 0.5);
+
     $(tar).css('background', 'grey');
-    $('#cover').css('background', 'darkgrey').css('display', 'block').css('opacity', 0.5).css('z-index', '1');
     popUp($(tar).offset().top, $(tar).offset().left, tar);
 }
 
@@ -92,9 +117,24 @@ function filling(tar) {
 }
 
 function waitSave(tar) {
-    $('#save').off().on('click', function () {
+    $('#save').off().on('click', function (e) {
         var i = tar.id.slice(3); // calendor array index
         arr[i] = $('#explain').val();
-        changeColorOff(tar);
+
+        //링크 기본동작은 작동하지 않도록 한다.
+        e.preventDefault();
+        $('#cover').hide();
+        $('#memoBox').css('display', 'none').css('z-index', '30');
+        $(tar).css('background', 'white');
     });
+    $('#cover').click(function () {
+        $(this).hide();
+        $('.window').hide();
+        $('#memoBox').css('display', 'none').css('z-index', '30');
+        $(tar).css('background', 'white');
+    });
+}
+
+function onCalendar() {
+    
 }
