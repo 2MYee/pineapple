@@ -15,84 +15,108 @@
       다른열: 다시 열림
     -->
     <div id="headWrapper">
-        <div id='scrollWrapper'>
-            <div id='leftArrow' class='month'>&lt;&lt;</div>
-            <ul>
-                <div id='1' class='month'>1</div>
-                <div id='2' class='month'>2</div>
-                <div id='3' class='month'>3</div>
-                <div id='4' class='month'>4</div>
-                <div id='5' class='month'>5</div>
-                <div id='6' class='month'>6</div>
-                <div id='7' class='month'>7</div>
-                <div id='8' class='month'>8</div>
-                <div id='9' class='month'>9</div>
-                <div id='10' class='month'>10</div>
-                <div id='11' class='month'>11</div>
-                <div id='12' class='month'>12</div>
-            </ul>
-            <div id='rightArrow' class='month'>&gt;&gt;</div>
+        <div id='leftSide'>
+            <div id='scrollWrapper'>
+
+                <div id='leftArrow' class='month'>&lt;&lt;</div>
+                <ul>
+                    <div id='1' class='month'>1</div>
+                    <div id='2' class='month'>2</div>
+                    <div id='3' class='month'>3</div>
+                    <div id='4' class='month'>4</div>
+                    <div id='5' class='month'>5</div>
+                    <div id='6' class='month'>6</div>
+                    <div id='7' class='month'>7</div>
+                    <div id='8' class='month'>8</div>
+                    <div id='9' class='month'>9</div>
+                    <div id='10' class='month'>10</div>
+                    <div id='11' class='month'>11</div>
+                    <div id='12' class='month'>12</div>
+                </ul>
+                <div id='rightArrow' class='month'>&gt;&gt;</div>
+
+            </div>
+            <div id="calWrapper">
+                <div id='cover'></div>
+                <div id="line1" class="calLine">
+                    <div id="box1" class="cal"></div>
+                    <div id="box2" class="cal"></div>
+                    <div id="box3" class="cal"></div>
+                    <div id="box4" class="cal"></div>
+                    <div id="box5" class="cal"></div>
+                    <div id="box6" class="cal"></div>
+                    <div id="box7" class="cal"></div></br>
+                </div>
+                <div id="line2" class="calLine">
+                    <div id="box8" class="cal"></div>
+                    <div id="box9" class="cal"></div>
+                    <div id="box10" class="cal"></div>
+                    <div id="box11" class="cal"></div>
+                    <div id="box12" class="cal"></div>
+                    <div id="box13" class="cal"></div>
+                    <div id="box14" class="cal"></div></br>
+                </div>
+                <div id="line3" class="calLine">
+                    <div id="box15" class="cal"></div>
+                    <div id="box16" class="cal"></div>
+                    <div id="box17" class="cal"></div>
+                    <div id="box18" class="cal"></div>
+                    <div id="box19" class="cal"></div>
+                    <div id="box20" class="cal"></div>
+                    <div id="box21" class="cal"></div></br>
+                </div>
+                <div id="line4" class="calLine">
+                    <div id="box22" class="cal"></div>
+                    <div id="box23" class="cal"></div>
+                    <div id="box24" class="cal"></div>
+                    <div id="box25" class="cal"></div>
+                    <div id="box26" class="cal"></div>
+                    <div id="box27" class="cal"></div>
+                    <div id="box28" class="cal"></div></br>
+                </div>
+                <div id="line5" class="calLine">
+                    <div id="box29" class="cal"></div>
+                    <div id="box30" class="cal"></div>
+                    <div id="box31" class="cal"></div>
+                    <div id="box32" class="cal"></div>
+                    <div id="box33" class="cal"></div>
+                    <div id="box34" class="cal"></div>
+                    <div id="box35" class="cal"></div></br>
+                </div>
+                <div id="line6" class="calLine">
+                    <div id="box36" class="cal"></div>
+                    <div id="box37" class="cal"></div>
+                    <div id="box38" class="cal"></div>
+                    <div id="box39" class="cal"></div>
+                    <div id="box40" class="cal"></div>
+                    <div id="box41" class="cal"></div>
+                    <div id="box42" class="cal"></div></br>
+                </div>
+                <div id='memoBox'>
+                    <form name="memoForm" , method="post" action="/calendar">
+                        <input type='text' id='title' class='textBox'>
+                        <input type='text' id='date' class='textBox'>
+                        <textarea id='explain' class='textBox' placeholder='메모...'></textarea>
+                        <button type='button' id='save'> 저장 </button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div id="calWrapper">
-            <div id='cover'></div>
-            <div id="line1" class="calLine">
-                <div id="box1" class="cal">1</div>
-                <div id="box2" class="cal">2</div>
-                <div id="box3" class="cal">3</div>
-                <div id="box4" class="cal">4</div>
-                <div id="box5" class="cal">5</div>
-                <div id="box6" class="cal">6</div>
-                <div id="box7" class="cal">7</div></br>
+
+        <div id='rightSide'>
+            <div id='infoBox'>
+                <div id='menuBox'>
+
+                    <div id='goToBoard'>
+                        <a href='/board'>게시판</a>
+                    </div>
+                </div>
+                <div id='myInfo'>
+
+                </div>
             </div>
-            <div id="line2" class="calLine">
-                <div id="box8" class="cal"></div>
-                <div id="box9" class="cal"></div>
-                <div id="box10" class="cal"></div>
-                <div id="box11" class="cal"></div>
-                <div id="box12" class="cal"></div>
-                <div id="box13" class="cal"></div>
-                <div id="box14" class="cal"></div></br>
-            </div>
-            <div id="line3" class="calLine">
-                <div id="box15" class="cal"></div>
-                <div id="box16" class="cal"></div>
-                <div id="box17" class="cal"></div>
-                <div id="box18" class="cal"></div>
-                <div id="box19" class="cal"></div>
-                <div id="box20" class="cal"></div>
-                <div id="box21" class="cal"></div></br>
-            </div>
-            <div id="line4" class="calLine">
-                <div id="box22" class="cal"></div>
-                <div id="box23" class="cal"></div>
-                <div id="box24" class="cal"></div>
-                <div id="box25" class="cal"></div>
-                <div id="box26" class="cal"></div>
-                <div id="box27" class="cal"></div>
-                <div id="box28" class="cal"></div></br>
-            </div>
-            <div id="line5" class="calLine">
-                <div id="box29" class="cal"></div>
-                <div id="box30" class="cal"></div>
-                <div id="box31" class="cal"></div>
-                <div id="box32" class="cal"></div>
-                <div id="box33" class="cal"></div>
-                <div id="box34" class="cal"></div>
-                <div id="box35" class="cal"></div></br>
-            </div>
-            <div id="line6" class="calLine">
-                <div id="box36" class="cal"></div>
-                <div id="box37" class="cal"></div>
-                <div id="box38" class="cal"></div>
-                <div id="box39" class="cal"></div>
-                <div id="box40" class="cal"></div>
-                <div id="box41" class="cal"></div>
-                <div id="box42" class="cal"></div></br>
-            </div>
-            <div id='memoBox'>
-                <input type='text' id='title' class='textBox'>
-                <textarea id='explain' class='textBox' placeholder='메모...'></textarea>
-                <button type='button' id='save'> 저장 </button>
+            <div id='chatBox'>
+                채팅창 들어갈예정
             </div>
         </div>
     </div>
