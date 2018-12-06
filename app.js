@@ -11,11 +11,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var signIn = require('./routes/signIn');
 var signUp = require('./routes/signUp');
-<<<<<<< HEAD
 var calender = require('./routes/calender');
-=======
 var board = require('./routes/board');
->>>>>>> f71678069b82bb0fce931d1cfc5608d24a7f0a6d
+var chat = require('./routes/chat');
 
 var app = express();
 
@@ -45,11 +43,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/signIn', signIn);
 app.use('/signUp', signUp);
-<<<<<<< HEAD
 app.use('/calender', calender);
-=======
 app.use('/board', board);
->>>>>>> f71678069b82bb0fce931d1cfc5608d24a7f0a6d
+app.use('/chat', chat)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

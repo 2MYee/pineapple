@@ -36,9 +36,36 @@ var inputUser = function (name, pw, salt, nickname) {
     });
 }
 
+/*
+    check user name is already exist when signup
+    return true when user name cannot using
+    return false when user name can use (not exist)
+*/
 var existCheck = function(name){
-    
+    return new Promise((resolve, reject)=>{
+        var query = 'SELECT name FROM user_info WHERE name=\'' + name + '\';';
+        connection.query(query, (err, row)=>{
+            if(err) throw err;
+            if(row[0] == undefined) resolve(true) 
+            else resolve(false)
+        })
+    })
 }
+
+/*
+    Click '중복확인' button -> cheking user name can use
+*/
+router.post('/check', (req, res) =>{
+    existCheck(req.body.name).then((result)=>{
+        var response = {result : true}
+        if(result){ //true
+            response['create'] = false;
+        }else{
+            response['create'] = true;
+        }
+        res.json(response);
+    })
+})
 
 //  get user's signup information by POST method and encrypting password and insert into database
 router.post('/', function (req, res) {
@@ -61,11 +88,3 @@ router.get('/', (req,res) => {
 })
 
 module.exports = router;
-
-
-/*
-getdata -> cryption -> input(info, name&salt)
-select(getId) -> input(subinfo, nickname)
-
-
-*/
