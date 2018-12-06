@@ -12,7 +12,7 @@ $('#ajaxsend').click( function() {
             }else{
                 $('#result').html('failed');
             }
-        } 
+        }
     }); 
 })
 
