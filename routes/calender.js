@@ -8,22 +8,32 @@ connection.connect();
 
 var router = express.Router();
 
-//Scehdule insert (open - public or private / share - single or share)
+//Scehdule insert
 var inputSchedule = (title)=>{
-    if(title.id == -1){ //new schedule
-        return new Promise((resolve, reject)=>{
-            var query = 'asdfsdaf';
-            connection.query(query, (err, row)=>{
-
-            })
-            resolve(row[0].id) // return new (return id)
-        })
-    }else{ //modify schedule
-        return new Promise((resolve, reject)=>{
-
-            resolve(row[0].id) // return modify (return id)
-        })
+    var id = title.id;
+    if(title.id == -1){ //new schedule => INSERT
+        var query = 'INSERT INTO schedule SET ?';
+    }else{ //modify schedule => UPDATE
+        var query = 'UPDATE schedule SET ? WHERE id=?';
     }
+    delete title['id'];
+    return new Promise((resolve, reject)=>{
+        connection.query(query, [title, id], (err, result)=>{
+            if(err) throw err;
+            resolve(result.insertId);
+        })
+    })
+}
+
+var getUserId = (user_name)=>{
+    return new Promise((resolve, reject)=>{
+        var query = 'SELECT id FROM user_info WHERE name=?';
+        var param = [user_name];
+        connection.query(query, param, (err, row)=>{
+            if(err) throw err;
+            resolve(row[0].id);
+        })
+    })
 }
 
 //regist schedule
@@ -32,29 +42,46 @@ router.post('/', (req, res) => {
         id : req.body.id, // default = -1
         date_start : req.body.date_start,
         date_end : req.body.date_end,
-        author : req.session.user_name,
         title : req.body.title,
-        contents : req.body.contents,
+        content : req.body.content,
         style : req.body.style
     }
-    console.log('using dummy data')
-    res.json(schedule);
+    getUserId(req,session.user_name).then((result)=>{
+        schedule['authorId'] = result;
+    })
 
-    // inputSchedule(schedule).then((result)=>{
-    //     var schedule = {
-    //         id : req.body.id, // default = -1
-    //         date_start : req.body.date_start,
-    //         date_end : req.body.date_end,
-    //         author : req.session.user_name,
-    //         title : req.body.title,
-    //         contents : req.body.contents,
-    //         style : req.body.style
-    //     }
-    //     // schedule.id = result; 
-    //     res.json(schedule);
-    // })
+    inputSchedule(schedule).then((result)=>{
+        schedule['id'] = result;
+        res.json(schedule);
+    })
+    // console.log('using dummy data')
+    // res.json(schedule);
 });
 
+//schedule loading (page loading, click other month -> both)
+var getSchedule = (id, year, month)=>{
+    return new Promise((resolve, reject) =>{
+        
+    })
+}
+
+router.post('/getschedule', (req,res)=>{
+    
+})
+
+router.post('/getHoliday', (req,res)=>{
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function(){
+        console.log('xhr loaded');
+    }
+    xhr.open('GET', 'http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getHoliDeInfo?solYear=2015&solMonth=05&ServiceKey=n3ZXMtMlodEBPY8IeuelMTZp%2FcgX6pCpXY%2Bi7VTS%2FHTgUO7quObnSu8RxAP9NbCiieqGcNd17bkrSTcvSuAbKA%3D%3D')
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4){
+            console.log(this.status)
+            console.log(this.responseText)
+        }
+    }
+})
 
 //logout button
 router.get('/logout', (req, res)=>{

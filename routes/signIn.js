@@ -11,15 +11,16 @@ var router = express.Router();
 
 //  get user password encrypting salt
 var getSalt = function (name) {
-    var query = 'SELECT salt FROM user_info WHERE name=\'' + name + '\';';
-    console.log(query)
+    var query = 'SELECT salt FROM user_info WHERE name=?';
+    var param = [name];
     return new Promise(function (resolve, reject) {
-        connection.query(query, function (err, row) {
+        connection.query(query, param, function (err, row) {
+            console.log(query)
             if (err) throw err;
             console.log(row[0]);
             if (row[0] == undefined) {
-                console.log('salt : NaN');
-                resolve(NaN);
+                console.log('salt : null');
+                resolve(null);
             } else {
                 console.log('salt : ' + row[0].salt);
                 resolve(row[0].salt);
@@ -32,17 +33,18 @@ var getSalt = function (name) {
 var isUserCorrect = function (name, password) {
     return new Promise((resolve, reject)=>{
         getSalt(name).then((result)=>{
-            if(result == NaN) resolve(false);
+            if(result == null) resolve(null);
             console.log(result);
             crypto.pbkdf2(password, result.toString(), 143752, 32, 'sha512', function(err, key){
-                var query = 'SELECT id FROM user_info WHERE password=\'' + key.toString('base64') + '\';';
+                var query = 'SELECT id FROM user_info WHERE password=?';
+                var param = [key.toString('base64')];
                 console.log(query);
-                connection.query(query, (err,row)=>{
+                connection.query(query, param, (err,row)=>{
                     if(err) throw err;
                     if(row[0] == undefined){
-                        resolve(false);
+                        resolve(null);
                     }else{
-                        resolve(true);
+                        resolve(row[0].id);
                     }
                 })
             });
@@ -59,9 +61,10 @@ router.post('/', function (req, res) {
     console.log(name);
 
     isUserCorrect(name, req.body.password).then((result) => {
-        if(result){
+        if(result != null){
             console.log('login success');
             req.session.user_name = name;
+            req.session.user_id = result;
             res.render('calendor', {user_name : req.session.user_name});
         }else{
             console.log('login fail');
