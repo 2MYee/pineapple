@@ -42,7 +42,6 @@ var getUserId = (user_name)=>{
 
 //regist schedule
 router.post('/', (req, res) => {
-    console.log('??')
     var schedule = {
         id : -1,
         authorId : req.session.user_id, // default = -1
@@ -52,15 +51,11 @@ router.post('/', (req, res) => {
         content : req.body.content,
         style : req.body.style
     }
-    console.log('???')
     getUserId(req.session.user_name).then((result)=>{
-        console.log('????')
         schedule['authorId'] = result;
     })
 
-    console.log('?????')
     inputSchedule(schedule).then((result)=>{
-        console.log('??????')
         schedule['id'] = result;
         res.json(schedule);
     })
@@ -75,17 +70,6 @@ const parseNumber = (number)=>{
     }else{
         return '0'+ parseInt(number);
     }
-}
-
-var getSchedule = (id, year, month)=>{
-    return new Promise((resolve, reject) =>{
-        var query = 'SELECT * FROM schedule WHERE authorId=? && year(date_start)=? && month(date_start)=?'
-        var param = [id, year, parseNumber(month)];
-        connection.query(query, param, (err, rows)=>{
-            if(err) throw err;
-            resolve(rows)
-        })
-    })
 }
 
 const deleteSchedule = (id)=>{
@@ -104,6 +88,17 @@ router.post('/delete', (req,res)=>{
         console.log('delete')
     })
 })
+
+var getSchedule = (id, year, month)=>{
+    return new Promise((resolve, reject) =>{
+        var query = 'SELECT * FROM schedule WHERE authorId=? && year(date_start)=? && month(date_start)=?'
+        var param = [id, year, parseNumber(month)];
+        connection.query(query, param, (err, rows)=>{
+            if(err) throw err;
+            resolve(rows)
+        })
+    })
+}
 
 router.post('/getschedule', (req,res)=>{
     getSchedule(req.session.user_id, req.body.year, req.body.month).then((result)=>{
@@ -136,8 +131,27 @@ router.post('/getHoliday', (req,res)=>{
     }
 })
 
+const outSchedule = (title, content)=>{
+    const query = 'INSERT INTO board SET ?';
+    const date = 'now()';
+    const param = [title, date, content];
+    connection.query(query, param,(err)=>{
+        if(err) throw err;
+    })
+}
+
+router.post('/out', (req, res)=>{
+    outSchedule(req.body.title, req.body.connect);
+})
+
 router.get('/', (req,res)=>{
-    res.render('calendar')
+  if(req.session.user_name == undefined){
+    console.log('LOG : no user login');
+    res.render('index');
+  }else{
+    console.log('LOG : user already login : ' + req.session.user_name);
+    res.render('calendar', {user_name : req.session.user_name});
+  }
 })
 
 router.post('/getUsername', (req,res)=>{

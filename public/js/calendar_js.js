@@ -269,13 +269,10 @@ function waitSave(tar) {
             
             data:{
                 id: id,
-                title: $('#title').val(),
-                date: $('#date').val(),
-                content: $('explain').val()
             },
 
             success: (result)=>{
-
+                //no result : just delete
             }
         })
         if (index > -1) {

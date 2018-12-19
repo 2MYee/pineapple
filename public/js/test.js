@@ -39,15 +39,14 @@ $('#ajaxsend').click( function() {
 $('#delete').click(()=>{
     $.ajax({
         url:'/calendar/delete',
-        
+        dataType: 'json',
+        type: 'post',
         data:{
-            title: $('#title').val(),
-            date: $('#date').val(),
-            content: $('explain').val()
+            id : $('').val()
         },
 
         success: (result)=>{
-
+            
         }
     })
 })
