@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form id='chat'>
+    <!-- <form action="" method="POST" id='sendForm'>
         <input type="text" id="name" class="name" readonly>
         <input type="text" id="message" class="message">
         <input type="submit" value="chat" class="chat">
@@ -16,8 +16,26 @@
     <div>
         <textarea id="chatLog" cols="30" rows="10" readonly></textarea>
     </div>
-    <script src="/socket.io/socket.io.js"></script>
+    <div class="panel-body">
+        <ul id='chatBody'></ul>
+    </div> -->
+    <div class="panel panel-default" id="chatWrap">
+        <div class="panel-heading">대화내용</div>
+        <div class="panel-body">
+            <ul id="chatBody"></ul>
+        </div>
+    </div>
+    <form action="" method="post" id="sendForm">
+        <div class="input-group">
+            <input type="hidden" name="socketId">
+            <input type="text" name="message" class="form-control" placeholder="대화내용을 입력해주세요.">
+            <span class="input-group-btn">
+                <button class="btn btn-primary">작성하기</button>
+            </span>
+        </div><!-- /input-group -->
+    </form>  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="/js/chat.js"></script>
 </body>
 </html>

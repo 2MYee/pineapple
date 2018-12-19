@@ -1,22 +1,35 @@
-var socket = io('http://localhost:3000');
+var socket = io.connect('localhost:3000');
 
-$('#chat').on('submit', (e)=>{
-    socket.emit('send message', $('#name').val(), $('#message').val());
-    $('#message').val('');
-    $('#message').focus();
-    e.preventDefault();
+window.onload= ()=>{
+    getUsername();
+}
+
+var username = null;
+
+const getUsername = ()=>{
+    $.ajax({
+        url: '/calendar/getUsername',
+        type: 'post',
+        dataType: 'json',
+        
+        success : (result)=>{
+            username = result;
+        }
+    })
+}
+
+socket.on('server message', (data) => {
+    $('#chatBody').append(data + '\n');
+    $('#chatBody').scrollTop($('#chatBody')[0].scrollHeight);
+});
+$(document).ready(() => {
+    $('#sendForm').submit(() => {
+        var $message = $('#sendForm input[name=message]');
+        socket.emit('client message', {
+            username: username,
+            message: $message.val()
+        });
+        $message.val('');
+        return false
+    })
 })
-
-socket.on('receive message', (msg)=>{
-    $('#chatLog').append(msg + '\n');
-    $('#chatLog').scrollTop($('#chatLog')[0].scrollHeight);
-})
-
-socket.on('change name', (name)=>{
-    $('#name').val(name);
-})
-
-// socket.on('news', (data)=> { 
-//     console.log(data); 
-//     socket.emit('my other event', { my: 'data' }); 
-// });

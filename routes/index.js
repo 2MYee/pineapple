@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
     res.render('index');
   }else{
     console.log('LOG : user already login : ' + req.session.user_name);
-    res.render('calendor', {user_name : req.session.user_name});
+    res.render('calendar', {user_name : req.session.user_name});
   }
 });
 
@@ -44,7 +44,7 @@ router.post('/test', (req, res)=>{
     parse.parseString(body, (err, result)=>{
       console.log(result['response']['body'][0]['items'][0]['item'].length)
       var ar = result['response']['body'][0]['items'][0]['item']
-      console.log(ar.length)
+      // console.log(ar.length)
       console.log(ar[0]['dateName'])
       res.json(ar)
     })

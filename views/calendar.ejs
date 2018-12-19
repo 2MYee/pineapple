@@ -1,19 +1,13 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="/css/calendor_style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/calendar_style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/js/calendor_js.js"></script>
+    <script src="/js/calendar_js.js"></script>
 </head>
 
 <body>
-    <!-- 표만드는걸 table로 해야하나 div로 다 쪼개야하나...
-    div로 쪼개야 애니매이션 넣기가 좋을듯??? 
-    캘린더 애니메이션: 칸 누르면 모세의기적 (마진 조정으로??)
-    애니메이션 후
-      같은열: 정보 표시만 변경
-      다른열: 다시 열림
-    -->
     <div id="headWrapper">
         <div id='leftSide'>
             <div id='scrollWrapper'>
@@ -93,11 +87,27 @@
                     <div id="box42" class="cal"></div></br>
                 </div>
                 <div id='memoBox'>
-                    <form name="memoForm" , method="post" action="/calendar">
+                    <div id="memoList">
+                        <table id='memoTable' class='table table-hover table-sm'>
+                            <thead>
+                                <tr>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <!-- <th>3</th> -->
+                                </tr>
+                            </thead>
+                        </table>
+                        <button id="newSchedule" type="button" class="btn btn-Dark"> New </button>
+                    </div>
+
+                    <form id="memoForm" , method="post" action="/calendar">
+                        <div id='currentId'>.</div>
                         <input type='text' id='title' class='textBox'>
                         <input type='text' id='date' class='textBox'>
                         <textarea id='explain' class='textBox' placeholder='메모...'></textarea>
-                        <button type='button' id='save'> 저장 </button>
+                        <button type='button' id='save' class="btn btn-Dark"> 저장 </button>
+                        <button type='button' id='delete' class="btn btn-Dark"> 삭제 </button>
+                        
                     </form>
                 </div>
             </div>
@@ -115,12 +125,26 @@
 
                 </div>
             </div>
-            <div id='chatBox'>
-                채팅창 들어갈예정
+            <div class="panel panel-default" id="chatWrap">
+                <div class="panel-heading">대화내용</div>
+                <div class="panel-body">
+                    <textarea id="chatBody" cols="30" rows="10" style="resize : none" readonly></textarea>
+                </div>
             </div>
+            <form action="" method="post" id="sendForm">
+                <div class="input-group">
+                    <input type="hidden" name="socketId">
+                    <input type="text" name="message" class="form-control" placeholder="대화내용을 입력해주세요.">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary">작성하기</button>
+                    </span>
+                </div><!-- /input-group -->
+            </form>
         </div>
     </div>
-
+    <script src="/js/test.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/chat.js"></script>
 </body>
 
 </html>

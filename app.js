@@ -12,9 +12,10 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var signIn = require('./routes/signIn');
 var signUp = require('./routes/signUp');
-var calender = require('./routes/calender');
+var calendar = require('./routes/calendar');
 var board = require('./routes/board');
-var chat = require('./routes/chat');
+
+var chat = require('./routes/chat'); //chat
 
 var app = express();
 
@@ -45,9 +46,10 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/signIn', signIn);
 app.use('/signUp', signUp);
-app.use('/calender', calender);
+app.use('/calendar', calendar);
 app.use('/board', board);
-app.use('/chat', chat);
+
+app.use('/chat', chat); //chat
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

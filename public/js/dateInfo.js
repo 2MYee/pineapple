@@ -4,7 +4,7 @@ window.onload = ()=>{
 
 const getHoliday = (year, month)=>{
     $.ajax({
-        url: '/getHoliday',                //주소
+        url: '/test',                //주소
         dataType: 'json',            //데이터 형식
         type: 'POST',                //전송 타입
         data:{

@@ -5,6 +5,7 @@
     align-content: flex-start;
     height: 100%;
     width: 100%;
+    background: #f8f0eb;
 
     /* position: relative;
     z-index: 4;
@@ -20,6 +21,7 @@
     display: flex;
     flex-direction: column;
     flex: 1;
+    min-width: 888px;
     min-height: 100%;
 }
 
@@ -38,9 +40,12 @@
 .cal{
     position: relative;
     z-index: 0;
-    width: 100px;
-    height: 100px;
-    border: 2px solid black;
+    width: 38%;
+    height: 14%;
+    font-size: 20px;
+    border: 2px solid #f8f0eb;
+    border-radius: 10px;
+    background: #ada8a4;
 }
 #cover {
     position:absolute;  
@@ -58,6 +63,13 @@
     background-color: white;
     width: 396px;
     height: 220px;
+}
+#memoList {
+    display: none;
+}
+
+#memoForm {
+    display: none;
 }
 
 .textBox {
@@ -105,9 +117,45 @@ ul {
     display: flex;
     flex-direction: column;
     flex: 1;
-    border: solid 2px;
+    border-radius: 20px;
+    background: #94908d;
     width: 30%;
     height: 100%;
+    margin-top: 50px;
     margin-left: 50px;
     margin-bottom: 50px;
+}
+
+.calBox {
+    /* color: red; */
+    /* border: solid 1px black; */
+    font-size: 17px;
+}
+
+#currentId {
+    display: none;
+}
+
+#newSchedule {
+    float: right;
+}
+#save {
+    position: relative;
+    float: right;
+    top: 115px;
+}
+#delete {
+    position: relative;
+    float: right;
+    top: 5px;
+    left:-60px;
+}
+.dateBox {
+    overflow: hidden;
+    height: 25px;
+}
+#goToBoard{
+    font-size: 25px;
+    margin-top:10px;
+    padding-left:15px;
 }

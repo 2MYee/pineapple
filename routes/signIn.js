@@ -65,7 +65,7 @@ router.post('/', function (req, res) {
             console.log('login success');
             req.session.user_name = name;
             req.session.user_id = result;
-            res.render('calendor', {user_name : req.session.user_name});
+            res.render('calendar', {user_name : req.session.user_name});
         }else{
             console.log('login fail');
             res.render('fail');

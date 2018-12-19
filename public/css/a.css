@@ -1,0 +1,35 @@
+#headWrapper {
+  display: flex;
+  position: absolute;
+  flex-flow: column wrap;
+  align-content: flex-start;
+  height: 100%;
+  width: 100%;
+  background: #f8f0eb; 
+}
+
+#leftSide{
+  /* display: flex; */
+  /* flex-direction: column; */
+  flex: 1;
+  min-width: 888px;
+  min-height: 100%;
+
+  margin-top: 80px;
+}
+#rightSide {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  border-radius: 20px;
+  background: #94908d;
+  width: 30%;
+  height: 100%;
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+
+#goToCalendar{
+  font-size:25px;
+}

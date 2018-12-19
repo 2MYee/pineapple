@@ -5,6 +5,7 @@
     overflow: auto;
     height: 100%;
     width: 100%;
+    background-color: #f8f0eb;
 }
 
 #logInBox {
@@ -28,6 +29,8 @@
     border: none;
     text-align: center;
     float: right;
+    background-color: #212529;
+    color:white;
     margin-bottom: 20px;
     width: 80px;
     height: 30px;
